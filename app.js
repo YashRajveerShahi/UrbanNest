@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("./models/listing.js");
+const Listing = require("./models/Listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsmate = require("ejs-mate");
