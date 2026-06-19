@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,7 +10,7 @@ const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
 const { wrap } = require("module");
 
-const MONGOOSE_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+const MONGOOSE_URL = process.env.ATLASDB_URL;
 main().then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
@@ -113,6 +114,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).send(message);
 });
 
-app.listen(8080 , ()=>{
-    console.log(`server started on 8080`);
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 });
